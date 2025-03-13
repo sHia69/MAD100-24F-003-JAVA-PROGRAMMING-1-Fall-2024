@@ -1,0 +1,185 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage{listings}
+
+% Define custom colors
+\definecolor{bg}{rgb}{0.64, 0.64, 0.82}
+\definecolor{frame}{rgb}{0.59, 0.47, 0.71}
+\definecolor{keyword}{rgb}{0.63, 0.14, 0.15}
+\definecolor{comment}{rgb}{0.44, 0.5, 0.56}
+\definecolor{string}{rgb}{0.12, 0.56, 0.18}
+
+% Set custom listings options
+\lstset{
+    backgroundcolor=\color{bg},
+    frame=single,
+    rulecolor=\color{frame},
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{keyword}\bfseries,
+    commentstyle=\color{comment},
+    stringstyle=\color{string},
+    showstringspaces=false,
+    breaklines=true,
+    xleftmargin=2mm,
+    xrightmargin=2mm
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{MAD 100 - Java Programming I - Fall 2024}
+\fancyhead[R]{Instructor: Franco Iacobacci \thepage}
+
+\title{Java Programming Notes}
+\author{Hia Al Saleh}
+\date{September 19th, 2024}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Math Library in Java}
+The Java Math library offers various functions to perform mathematical operations, such as calculating exponents, square roots, and logarithms.
+
+\subsection{Key Math Functions}
+Here are some common functions from the Math library:
+\begin{itemize}
+    \item \texttt{Math.pow(base, exponent)}: Calculates the value of the base raised to the power of the exponent.
+    \item \texttt{Math.sqrt(number)}: Returns the square root of the given number.
+    \item \texttt{Math.log10(number)}: Returns the base 10 logarithm of the given number.
+\end{itemize}
+
+\subsection{Example: Exponent Calculation}
+Here is an example that calculates an exponent using \texttt{Math.pow()}:
+\begin{lstlisting}[language=Java]
+double base = 2;
+double exponent = 3;
+double result = Math.pow(base, exponent);
+System.out.println("Result: " + result);
+\end{lstlisting}
+
+\section{Conditional Logic in Java}
+Conditional logic in Java allows the program to make decisions based on certain conditions. The most common conditional structures are the \texttt{if}, \texttt{else if}, and \texttt{else} statements.
+
+\subsection{If Statement}
+The \texttt{if} statement executes a block of code if the given condition evaluates to true.
+
+\begin{lstlisting}[language=Java]
+int a = 5;
+if (a > 3) {
+    System.out.println("a is greater than 3");
+}
+\end{lstlisting}
+
+\subsection{If-Else Statement}
+The \texttt{if-else} statement provides an alternative block of code to execute if the condition evaluates to false.
+
+\begin{lstlisting}[language=Java]
+int b = 2;
+if (b > 3) {
+    System.out.println("b is greater than 3");
+} else {
+    System.out.println("b is less than or equal to 3");
+}
+\end{lstlisting}
+
+\subsection{Else-If Statement}
+The \texttt{else-if} statement allows multiple conditions to be checked in sequence. If the first condition fails, the program checks the next one.
+
+\begin{lstlisting}[language=Java]
+int c = 7;
+if (c > 10) {
+    System.out.println("c is greater than 10");
+} else if (c > 5) {
+    System.out.println("c is greater than 5 but less than or equal to 10");
+} else {
+    System.out.println("c is less than or equal to 5");
+}
+\end{lstlisting}
+
+\section{Boolean Data Type}
+In Java, the \texttt{boolean} data type represents two possible values: \texttt{true} or \texttt{false}. Boolean values are commonly used in conditional expressions.
+
+\begin{lstlisting}[language=Java]
+boolean isHungry = true;
+if (isHungry) {
+    System.out.println("I am hungry");
+} else {
+    System.out.println("I am not hungry");
+}
+\end{lstlisting}
+
+\section{Comparison Operators}
+Comparison operators are used to compare two values. These operators return a boolean value (\texttt{true} or \texttt{false}).
+
+\begin{itemize}
+    \item \texttt{==}: Equal to
+    \item \texttt{!=}: Not equal to
+    \item \texttt{>}: Greater than
+    \item \texttt{<}: Less than
+    \item \texttt{>=}: Greater than or equal to
+    \item \texttt{<=}: Less than or equal to
+\end{itemize}
+
+\subsection{Example: Using Comparison Operators}
+\begin{lstlisting}[language=Java]
+int x = 10;
+int y = 5;
+System.out.println(x > y); // true
+System.out.println(x == y); // false
+System.out.println(x != y); // true
+\end{lstlisting}
+
+\section{Logical Operators}
+Logical operators allow combining multiple boolean expressions into a single expression.
+
+\begin{itemize}
+    \item \texttt{\&\&}: Logical AND (both conditions must be true)
+    \item \texttt{||}: Logical OR (at least one condition must be true)
+    \item \texttt{!}: Logical NOT (inverts the boolean value)
+\end{itemize}
+
+\subsection{Example: Logical Operators}
+\begin{lstlisting}[language=Java]
+boolean isRaining = false;
+boolean haveUmbrella = true;
+
+if (!isRaining || haveUmbrella) {
+    System.out.println("I can go outside");
+}
+\end{lstlisting}
+
+\section{Creating a Java Class in IntelliJ}
+To create a new Java class in IntelliJ, follow these steps:
+\begin{enumerate}
+    \item Open IntelliJ and select \texttt{File > New > Project}.
+    \item Choose Java and set the project SDK to version 1.8.
+    \item Give the project a name, e.g., \texttt{FunctionCalculator}.
+    \item Right-click on the \texttt{src} folder and select \texttt{New > Java Class}.
+    \item Name the class \texttt{FunctionCalculator} and hit enter.
+\end{enumerate}
+
+\subsection{Writing a Program}
+In the new \texttt{FunctionCalculator.java} file, you can start by creating the \texttt{main} method using the following command:
+\begin{lstlisting}[language=Java]
+public class FunctionCalculator {
+    public static void main(String[] args) {
+        System.out.println("Welcome to Function Calculator!");
+    }
+}
+\end{lstlisting}
+
+\section{Homework and Next Steps}
+Read Chapter 3 and 4 of your textbook to prepare for next week's topics, which will cover:
+\begin{itemize}
+    \item Repetition Structures
+    \item Sentinel Values
+    \item While and For Loops
+    \item Nested Loops
+\end{itemize}
+
+\end{document}

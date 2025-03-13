@@ -1,0 +1,174 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage{listings}
+
+% Define custom colors
+\definecolor{bg}{rgb}{0.64, 0.64, 0.82}
+\definecolor{frame}{rgb}{0.59, 0.47, 0.71}
+\definecolor{keyword}{rgb}{0.63, 0.14, 0.15}
+\definecolor{comment}{rgb}{0.44, 0.5, 0.56}
+\definecolor{string}{rgb}{0.12, 0.56, 0.18}
+
+% Set custom listings options
+\lstset{
+    backgroundcolor=\color{bg},
+    frame=single,
+    rulecolor=\color{frame},
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{keyword}\bfseries,
+    commentstyle=\color{comment},
+    stringstyle=\color{string},
+    showstringspaces=false,
+    breaklines=true,
+    xleftmargin=2mm,
+    xrightmargin=2mm
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{MAD 100 - Java Programming I - Fall 2024}
+\fancyhead[R]{Instructor: Franco Iacobacci \thepage}
+\title{Java Programming 1 - Week 5 Notes}
+\author{Hia Al Saleh}
+\date{October 3rd, 2024}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Introduction to Functions}
+A function is a block of code used to complete a specific task. Functions help to:
+\begin{itemize}
+    \item Simplify tasks and code.
+    \item Remove duplicate code.
+    \item Minimize the chance for errors.
+\end{itemize}
+
+In Java, a function is composed of the following elements:
+\begin{itemize}
+    \item Access Modifier (e.g., \texttt{public}, \texttt{private}).
+    \item Non-Access Modifier (optional, e.g., \texttt{static}, \texttt{final}).
+    \item Return Type (e.g., \texttt{int}, \texttt{boolean}, \texttt{void}).
+    \item Function Name.
+    \item Formal Parameters.
+\end{itemize}
+
+\section{Access Modifiers}
+Access modifiers determine the visibility of functions. The common modifiers include:
+\begin{itemize}
+    \item \texttt{public}: The function can be accessed from anywhere.
+    \item \texttt{private}: The function can only be accessed within the class.
+    \item \texttt{protected}: The function can be accessed within the package and by subclasses.
+\end{itemize}
+Example:
+\begin{lstlisting}[language=java]
+public int calculateSum(int a, int b) {
+    return a + b;
+}
+\end{lstlisting}
+
+\section{Non-Access Modifiers}
+Non-access modifiers add special features to functions:
+\begin{itemize}
+    \item \texttt{static}: Allows the function to be called without creating an object.
+    \item \texttt{final}: Prevents overriding of the function.
+    \item \texttt{abstract}: Creates a template for future functions (used in object-oriented programming).
+    \item \texttt{synchronized}: Ensures only one thread uses the function at a time.
+\end{itemize}
+
+\section{Return Types}
+The return type specifies the data type of the value returned by the function. Examples of return types include:
+\begin{itemize}
+    \item \texttt{int}, \texttt{double}, \texttt{boolean}, \texttt{String}, etc.
+    \item \texttt{void}: Indicates that no value is returned.
+\end{itemize}
+
+Example:
+\begin{lstlisting}[language=java]
+public double findSquareRoot(double number) {
+    return Math.sqrt(number);
+}
+\end{lstlisting}
+
+\section{Naming Functions}
+When naming functions:
+\begin{itemize}
+    \item Use camelCase for naming (e.g., \texttt{calculateTotal}).
+    \item Choose meaningful names for clarity.
+    \item Avoid starting names with \_ or \$.
+\end{itemize}
+
+\section{Formal Parameters}
+Formal parameters allow you to pass data to a function when it is called. For example:
+\begin{lstlisting}[language=java]
+public int addNumbers(int num1, int num2) {
+    return num1 + num2;
+}
+\end{lstlisting}
+Here, \texttt{num1} and \texttt{num2} are formal parameters that the function uses.
+
+\section{Code Audit}
+We can improve code by modularizing repeated tasks into functions. For example, a \texttt{min()} function to return the smallest of two numbers:
+\begin{lstlisting}
+public static double min(double num1, double num2) {
+    return (num1 < num2) ? num1 : num2;
+}
+\end{lstlisting}
+
+Similarly, we can create a \texttt{max()} function to find the larger number, and an \texttt{equals()} function to check equality:
+\begin{lstlisting}[language=java]
+public static double max(double num1, double num2) {
+    return (num1 > num2) ? num1 : num2;
+}
+
+public static boolean equals(double num1, double num2) {
+    return num1 == num2;
+}
+\end{lstlisting}
+
+\section{Building a Program (Example: HighLow)}
+In this exercise, we will build a program that compares numbers entered by the user and keeps track of the highest and lowest numbers.
+
+Steps:
+\begin{enumerate}
+    \item Create a new project in IntelliJ named \texttt{HighLow}.
+    \item Create a new Java class file named \texttt{HighLow}.
+    \item Write the \texttt{main()} method, which takes user input and stores it in a \texttt{Scanner} object.
+    \item Use the \texttt{min()} and \texttt{max()} functions to update the highest and lowest numbers.
+\end{enumerate}
+
+Example:
+\begin{lstlisting}[language=java]
+public static void main(String[] args) {
+    Scanner input = new Scanner(System.in);
+    double num, highest, lowest;
+
+    System.out.print("Enter a number: ");
+    num = input.nextDouble();
+    highest = lowest = num;
+
+    // Continue accepting numbers until the user enters -1
+    while (num != -1) {
+        highest = max(highest, num);
+        lowest = min(lowest, num);
+        System.out.print("Enter a number: ");
+        num = input.nextDouble();
+    }
+
+    System.out.println("Highest number: " + highest);
+    System.out.println("Lowest number: " + lowest);
+}
+\end{lstlisting}
+
+\section{Homework}
+\begin{itemize}
+    \item Read Chapter 6 of the textbook.
+    \item Review the \texttt{min()}, \texttt{max()}, and \texttt{equals()} functions and ensure you understand their structure.
+\end{itemize}
+
+\end{document}

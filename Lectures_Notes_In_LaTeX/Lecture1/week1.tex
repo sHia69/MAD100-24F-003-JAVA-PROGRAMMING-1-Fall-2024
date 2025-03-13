@@ -1,0 +1,175 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage{listings}
+
+% Define custom colors
+\definecolor{bg}{rgb}{0.64, 0.64, 0.82}
+\definecolor{frame}{rgb}{0.59, 0.47, 0.71}
+\definecolor{keyword}{rgb}{0.63, 0.14, 0.15}
+\definecolor{comment}{rgb}{0.44, 0.5, 0.56}
+\definecolor{string}{rgb}{0.12, 0.56, 0.18}
+
+% Set custom listings options
+\lstset{
+    backgroundcolor=\color{bg},
+    frame=single,
+    rulecolor=\color{frame},
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{keyword}\bfseries,
+    commentstyle=\color{comment},
+    stringstyle=\color{string},
+    showstringspaces=false,
+    breaklines=true,
+    xleftmargin=2mm,
+    xrightmargin=2mm
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{MAD 100 - Java Programming I - Fall 2024}
+\fancyhead[R]{Instructor: Franco Iacobacci \thepage}
+\title{Java Programming 1 - Week 1 Notes}
+\author{Hia Al Saleh}
+\date{September 5th, 2024}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+\section{Topics for this Week}
+\begin{itemize}
+    \item Computers
+    \item Operating Systems
+    \item Programming
+    \item Java
+    \item IDEs
+    \item Hello World
+\end{itemize}
+
+\section{History}
+\textbf{What is a Computer?}
+\begin{itemize}
+    \item A computer is a general-purpose device comprised of hardware.
+    \item Computer hardware can execute tasks via programming.
+    \item Programs, or software, are written using code.
+\end{itemize}
+
+\textbf{Operating System (OS):}
+\begin{itemize}
+    \item The OS is the largest software component, controlling and managing hardware.
+    \item It allocates hardware resources.
+\end{itemize}
+
+\section{What is Programming?}
+\begin{itemize}
+    \item Programming is the process of writing software.
+    \item There are hundreds of programming languages, each suited to different tasks.
+    \item In this course, we focus on \textbf{Java}.
+    \item Java is widely used for building desktop, server, and Android mobile applications.
+\end{itemize}
+
+\section{Language Overview}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Language} & \textbf{Primary Use} \\
+\hline
+C & Low-level operations, OS development \\
+Python & General-purpose, used in math, science \\
+PHP & Server-side web development \\
+C++ & General-purpose, used for applications, games \\
+Java & General-purpose, used on all OS and mobile platforms \\
+\hline
+\end{tabular}
+
+\section{Java Programming Language}
+\textbf{What is Java?}
+\begin{itemize}
+    \item Java was developed by Sun Microsystems, led by James Gosling.
+    \item It is platform-independent: \emph{Write once, run anywhere}.
+    \item Java code is compiled into \textbf{bytecode}, which runs on the \textbf{Java Virtual Machine (JVM)}.
+    \item JVM allows Java bytecode to run on any operating system (Windows, Mac, Linux).
+\end{itemize}
+
+\textbf{Java Compilation Process:}
+\begin{itemize}
+    \item High-level code (Java) is compiled into bytecode.
+    \item The JVM interprets bytecode and translates it for the specific OS.
+\end{itemize}
+
+\section{Hello World in Java}
+\subsection*{Steps to Build the First Java Program}
+\begin{enumerate}
+    \item Open \textbf{IntelliJ IDEA} IDE.
+    \item Create a new Java project (\texttt{File > New > Project}).
+    \item Choose the \textbf{Java SDK} (version 15).
+    \item Name the project \emph{HelloWorld}.
+    \item Inside the \texttt{src} directory, create a new Java class named \emph{HelloWorld}.
+    \item Inside the class, type \texttt{psvm} and hit Enter for auto-completion of the main method.
+\end{enumerate}
+
+\textbf{HelloWorld.java File Structure:}
+\begin{lstlisting}[language=java]
+public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello World");
+    }
+}
+\end{lstlisting}
+
+\subsection*{Compiling and Running the Program}
+\begin{itemize}
+    \item To compile and run: \texttt{Run > Run > HelloWorld}.
+    \item The output will be displayed in the console.
+\end{itemize}
+
+\section{Arithmetic and Operators in Java}
+\textbf{Example Code:}
+\begin{lstlisting}
+public class RoofQuote {
+    public static void main(String[] args) {
+        System.out.println((5 * 10) / 2);  // Outputs: 25
+    }
+}
+\end{lstlisting}
+Java follows the \textbf{BEDMAS} rules:
+\begin{itemize}
+    \item Brackets, Exponents, Division/Multiplication (left to right), Addition/Subtraction (left to right).
+\end{itemize}
+
+\section{Variables in Java}
+\textbf{What are Variables?}
+\begin{itemize}
+    \item Variables store data for later use and have specific \textbf{data types}.
+    \item Java is a \emph{strongly typed} language, meaning variable types must be declared.
+\end{itemize}
+
+\textbf{Variable Examples:}
+\begin{lstlisting}[language=java]
+int age = 45;
+String name = "Truss Goodman";
+double bankAccount = 43000.92;
+\end{lstlisting}
+
+\textbf{Exercise:}
+\begin{itemize}
+    \item Create two variables (\texttt{number1}, \texttt{number2}).
+    \item Output their sum and product.
+\end{itemize}
+\newpage 
+
+\section{Homework \& Next Week}
+\begin{itemize}
+    \item Read pages 1-36 of your textbook.
+    \item Variables in depth
+    \item Reading input from the console
+    \item Assignment statements \& expressions
+    \item Naming conventions
+    \item Data types
+    \item Operators \& type conversions
+\end{itemize}
+
+\end{document}

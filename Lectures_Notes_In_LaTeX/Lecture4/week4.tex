@@ -1,0 +1,204 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage{listings}
+
+% Define custom colors
+\definecolor{bg}{rgb}{0.64, 0.64, 0.82}
+\definecolor{frame}{rgb}{0.59, 0.47, 0.71}
+\definecolor{keyword}{rgb}{0.63, 0.14, 0.15}
+\definecolor{comment}{rgb}{0.44, 0.5, 0.56}
+\definecolor{string}{rgb}{0.12, 0.56, 0.18}
+
+% Set custom listings options
+\lstset{
+    backgroundcolor=\color{bg},
+    frame=single,
+    rulecolor=\color{frame},
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{keyword}\bfseries,
+    commentstyle=\color{comment},
+    stringstyle=\color{string},
+    showstringspaces=false,
+    breaklines=true,
+    xleftmargin=2mm,
+    xrightmargin=2mm
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{MAD 100 - Java Programming I - Fall 2024}
+\fancyhead[R]{Instructor: Franco Iacobacci \thepage}
+\title{Java Programming Notes}
+\author{Hia Al Saleh}
+\date{September 26th, 2024}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Repetition Structures}
+
+\subsection{Topics}
+\begin{itemize}
+    \item  Sentinel values
+    \item  While Loop
+    \item  For Loop
+    \item  Do While Loop
+    \item  Nested Loops
+    \item  Boolean Conditions
+\end{itemize}
+
+
+\subsection{Creating a new project in IntelliJ}
+Steps to create a new Java project:
+\begin{enumerate}
+    \item Open IntelliJ and select \texttt{File > New > Project}.
+    \item Select \texttt{Java Project} and choose \texttt{SDK 1.8}.
+    \item Name the project \textbf{RandomGame}.
+\end{enumerate}
+
+
+\subsection{Generating Random Numbers}
+To generate random numbers in Java:
+\begin{itemize}
+    \item Create a random object using \texttt{Random()}.
+    \item Seed the random object using the current time in milliseconds.
+    \item Use \texttt{random.nextInt(n)} to generate numbers between 0 and n-1.
+\end{itemize}
+
+\begin{lstlisting}[language=java]
+import java.util.Random;
+import java.util.Scanner;
+
+public class EasterEggGame {
+    public static void main(String[] args) {
+        final Boolean DEBUG = false;
+        Scanner input = new Scanner(System.in);
+        Random random = new Random();
+        int totalScore = 0;
+        int difficulty;
+        //Welcome user to the game and ask them for difficulty level
+        System.out.println("Welcome to the ultra secret guessing game.");
+        do {
+            System.out.println("Please select a difficulty\n" +
+                    "1) Easy (1-10)\n" +
+                    "2) Medium (1-25)\n" +
+                    "3) Hard (1-50)\n");
+            //Accept user input for difficulty level
+
+             difficulty = input.nextInt();
+        } while (difficulty > 3 );
+        //Ask the user the number of rounds, take as input
+        System.out.println("How many rounds would you like to play?");
+        int numOfRounds = input.nextInt();
+        // PER ROUND:
+        for (int i =0; i< numOfRounds; i++){
+            int winningNumber=0;
+            //  Generate proper random answer based on difficulty level
+            switch (difficulty){
+                case 1: winningNumber = random.nextInt(10)+1;
+                        break;
+                case 2: winningNumber = random.nextInt(25)+1;
+                        break;
+                case 3: winningNumber = random.nextInt(50)+1;
+                        break;
+            }
+            //  Ask user for number guess until correct
+            int userChoice;
+            int guesses=0;
+            if(DEBUG) {
+                System.out.println("DEBUG - " + winningNumber);
+            }
+            do{
+                System.out.println("Please enter your guess: ");
+                userChoice = input.nextInt();
+                guesses++;
+            } while (userChoice!=winningNumber);
+            //  Add score to total score
+            totalScore+=guesses;
+            System.out.println("It took "+guesses+" to guess the number");
+        }
+
+        //Display Total Score (lower is better)
+        System.out.println("Total score: "+totalScore);
+    }
+}
+\end{lstlisting}
+
+\subsection{Repetition Structures}
+Three main types of loops:
+\begin{itemize}
+    \item \textbf{For Loop}: Used for executing code a set number of times.
+    \item \textbf{While Loop}: Executes code while a condition is true.
+    \item \textbf{Do While Loop}: Similar to the while loop, but guarantees execution at least once.
+\end{itemize}
+\begin{lstlisting}[language=java]
+    public class DoWhile {
+    public static void main(String[] args) {
+        int number = 10;
+        do{
+            System.out.println("Do While " + number);
+        }while (number < 9);
+
+        while (number <9){
+            System.out.println("while "+number);
+        }
+        /*
+        while (number < 20){
+            System.out.println("while "+number);
+            number++;
+        }*/
+    }
+}
+\end{lstlisting}
+
+\subsection{Boolean Conditions}
+\begin{itemize}
+    \item Loops often rely on Boolean conditions to determine when to stop executing.
+    \item Boolean expressions return either \texttt{true} or \texttt{false}.
+\end{itemize}
+\section{TestRandom}
+\begin{lstlisting}[language=java]
+import java.util.Random;
+
+public class TestRandom {
+    public static void main(String[] args) {
+        Random rand = new Random();//new Random(20);
+        System.out.println(rand.nextInt());
+        //System.out.println((rand.nextInt(10)+1)); //1-10
+        //System.out.println(rand.nextInt(31)+20); //20-50
+        for (int i = 0;i<10;i++){
+            System.out.println(i+" - "+(rand.nextInt(31)+20)); //20-50
+        }
+        int randomNum;
+        do {
+            randomNum = rand.nextInt(31) + 20;
+            System.out.println(randomNum);
+        } while (randomNum >= 20);
+    }
+}    
+\end{lstlisting}
+
+
+\subsection*{Homework}
+\begin{itemize}
+    \item Read Chapter 5 of the textbook.
+    \item Test the Random Game program for generating random numbers and tracking user scores.
+\end{itemize}
+
+\section*{Next Week}
+Topics include:
+\begin{itemize}
+    \item Repetition structures
+    \item Sentinel values
+    \item Nested loops
+    \item Boolean conditions
+    \item String manipulation
+\end{itemize}
+
+\end{document}

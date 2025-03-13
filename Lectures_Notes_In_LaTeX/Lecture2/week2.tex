@@ -1,0 +1,145 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage{listings}
+
+% Define custom colors
+\definecolor{bg}{rgb}{0.64, 0.64, 0.82}
+\definecolor{frame}{rgb}{0.59, 0.47, 0.71}
+\definecolor{keyword}{rgb}{0.63, 0.14, 0.15}
+\definecolor{comment}{rgb}{0.44, 0.5, 0.56}
+\definecolor{string}{rgb}{0.12, 0.56, 0.18}
+
+% Set custom listings options
+\lstset{
+    backgroundcolor=\color{bg},
+    frame=single,
+    rulecolor=\color{frame},
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{keyword}\bfseries,
+    commentstyle=\color{comment},
+    stringstyle=\color{string},
+    showstringspaces=false,
+    breaklines=true,
+    xleftmargin=2mm,
+    xrightmargin=2mm
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{MAD 100 - Java Programming I - Fall 2024}
+\fancyhead[R]{Instructor: Franco Iacobacci \thepage}
+
+\title{Java Programming Notes}
+\author{Hia Al Saleh}
+\date{September 12th, 2024}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage 
+\section{Topics for This Week}
+\begin{itemize}
+    \item Variables and Console
+    \item Assignment Statements
+    \item Naming Conventions
+    \item Data Types and Operators
+    \item Numeric Type Casting
+\end{itemize}
+
+\section{Client Request: Truss Goodman}
+\textbf{Initial Requirements:}
+\begin{itemize}
+    \item Input shingle cost, roof size, and installation cost.
+    \item Calculate taxes and output the total before and after taxes.
+\end{itemize}
+
+\textbf{Steps to Implement:}
+\begin{enumerate}
+    \item Allow user input for shingle cost.
+    \item Allow user input for roof size (in square feet).
+    \item Allow user input for installation cost (per square foot).
+    \item Add a named constant for relevant taxes.
+    \item Calculate totals (before and after taxes).
+    \item Output the totals to the console.
+\end{enumerate}
+
+\section{Java Input: Scanner Class}
+\textbf{Step 1-3:} Using the Scanner class for user input:
+\begin{itemize}
+    \item Import the Scanner class: \texttt{import java.util.Scanner;}
+    \item Create a new scanner object: \texttt{Scanner input = new Scanner(System.in);}
+    \item Store input in variables using \texttt{input.nextDouble()} for numeric input.
+\end{itemize}
+
+\section{Testing the Program}
+\begin{itemize}
+    \item Compile and run the program.
+    \item Input values for shingle cost, roof size, and installation cost.
+    \item Verify output before and after taxes.
+\end{itemize}
+
+\section{Variable Naming Conventions}
+\textbf{Camel Case:}
+\begin{itemize}
+    \item Variables should be named using camel case, e.g., \texttt{thisIsCamelCase}.
+\end{itemize}
+
+\textbf{Named Constants:}
+\begin{itemize}
+    \item Constants should be named in uppercase.
+    \item Example: \texttt{final double HST = 1.13;}
+\end{itemize}
+
+\section{Final Output and Client Feedback}
+\begin{itemize}
+    \item The final output includes totals before and after taxes.
+    \item Potential future changes for client needs.
+\end{itemize}
+
+\section{Creating a New Java Project: SimpleCalculator}
+\textbf{Steps:}
+\begin{enumerate}
+    \item Create a new project in IntelliJ with SDK 1.8.
+    \item Create a new Java class: \texttt{SimpleCalculator}.
+    \item Use \texttt{System.out.println()} to display options.
+\end{enumerate}
+
+\textbf{Example Code:}
+\begin{lstlisting}[language=Java]
+System.out.println("Welcome to the calculator app");
+System.out.println("1) Perform Multiplication");
+System.out.println("2) Perform Division");
+System.out.println("3) Perform Subtraction");
+System.out.println("4) Perform Addition");
+System.out.println("5) Perform Modulus");
+System.out.println("Please Select A Number:");
+\end{lstlisting}
+
+\section{Error Types}
+\begin{itemize}
+    \item \textbf{Syntax Errors:} Errors in code structure (e.g., missing braces).
+    \item \textbf{Logic Errors:} Code executes but produces incorrect results.
+    \item \textbf{Runtime Errors:} Occur when unexpected input is provided.
+\end{itemize}
+
+\section{Homework}
+\begin{itemize}
+    \item Read pages 120-148 of the textbook.
+\end{itemize}
+
+\section{Next Week's Topics}
+\begin{itemize}
+    \item Boolean Data Types
+    \item Selection Structures (if, if-else statements)
+    \item Boolean Conditions
+    \item Relational Operators
+    \item Math Library - Random Numbers
+    \item Logic Operators
+    \item Conditional Expressions
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,246 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage{listings}
+
+% Define custom colors
+\definecolor{bg}{rgb}{0.64, 0.64, 0.82}
+\definecolor{frame}{rgb}{0.59, 0.47, 0.71}
+\definecolor{keyword}{rgb}{0.63, 0.14, 0.15}
+\definecolor{comment}{rgb}{0.44, 0.5, 0.56}
+\definecolor{string}{rgb}{0.12, 0.56, 0.18}
+
+% Set custom listings options
+\lstset{
+    backgroundcolor=\color{bg},
+    frame=single,
+    rulecolor=\color{frame},
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{keyword}\bfseries,
+    commentstyle=\color{comment},
+    stringstyle=\color{string},
+    showstringspaces=false,
+    breaklines=true,
+    xleftmargin=2mm,
+    xrightmargin=2mm
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{MAD 100 - Java Programming I - Fall 2024}
+\fancyhead[R]{Instructor: Franco Iacobacci \thepage}
+\title{Java Programming 1 - Week 11 Notes}
+\author{Hia Al Saleh}
+\date{November 14th, 2024}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage 
+
+\section{Introduction}
+In this week's lecture, we are diving deeper into Object-Oriented Programming (OOP), focusing on building super and subclasses, inheritance, and method overriding and overloading. We will use these concepts to create a game in which each character belongs to a specific race (\texttt{Orc}, \texttt{Elf}, \texttt{Human}) and has unique abilities and attributes.
+
+\section{Overview of Super and Subclasses}
+A \textbf{superclass} (also called a \textbf{base} or \textbf{parent class}) is a general class that defines common properties and methods for all its subclasses. A \textbf{subclass} (also known as a \textbf{derived} or \textbf{child class}) inherits the properties and methods from the superclass and can add or override them.
+
+\textbf{Example:}
+\begin{lstlisting}[language=Java]
+class Character {
+    // Common attributes for all characters
+    String name;
+    int age;
+    int health;
+    
+    public Character(String name, int age) {
+        this.name = name;
+        this.age = age;
+        this.health = 100; // default health
+    }
+    
+    public void displayInfo() {
+        System.out.println("Name: " + name + ", Age: " + age + ", Health: " + health);
+    }
+}
+
+class Orc extends Character {
+    int strength;
+
+    public Orc(String name, int age) {
+        super(name, age);
+        this.strength = 120; // default orc strength
+    }
+    
+    public void displayInfo() {
+        super.displayInfo();
+        System.out.println("Strength: " + strength);
+    }
+}
+\end{lstlisting}
+
+In this example, \texttt{Orc} is a subclass that inherits from the \texttt{Character} superclass, adding a specific attribute (\texttt{strength}) and overriding the \texttt{displayInfo()} method to include it.
+
+\section{Creating the \texttt{Character} Superclass}
+The \texttt{Character} superclass defines attributes and behaviors that all characters will share, such as name, age, health, and methods to access these attributes. We also define an abstract \texttt{communicate()} method, which each subclass will implement differently.
+
+\subsection{Attributes}
+Each \texttt{Character} will have the following attributes:
+\begin{itemize}
+    \item \textbf{Name:} The character’s name.
+    \item \textbf{Age:} The character’s age.
+    \item \textbf{Health:} An integer representing health points.
+    \item Other attributes include intelligence, strength, defense, and agility.
+\end{itemize}
+
+\subsection{Constructor and Methods}
+The constructor initializes name and age, while getters and setters allow access to other private attributes.
+
+\textbf{Example:}
+\begin{lstlisting}[language=Java]
+public abstract class Character {
+    private String name;
+    private int age;
+    private int health;
+
+    public Character(String name, int age) {
+        this.name = name;
+        this.age = age;
+        this.health = 100; // Default health
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    // Abstract method to be implemented by subclasses
+    public abstract void communicate();
+}
+\end{lstlisting}
+
+\section{Creating Subclasses for Different Races}
+The subclasses (\texttt{Orc}, \texttt{Elf}, and \texttt{Human}) extend \texttt{Character} and provide specific implementations of the \texttt{communicate()} method and race-specific attributes.
+
+\subsection{Orc Subclass}
+The \texttt{Orc} class represents a strong character type with higher-than-average strength but lower intelligence.
+
+\textbf{Example:}
+\begin{lstlisting}[language=Java]
+public class Orc extends Character {
+    private int strength;
+
+    public Orc(String name, int age) {
+        super(name, age);
+        this.strength = 150;
+    }
+
+    @Override
+    public void communicate() {
+        System.out.println("Grunts and roars");
+    }
+}
+\end{lstlisting}
+
+\subsection{Elf Subclass}
+The \texttt{Elf} class has higher agility and intelligence, suitable for stealth and magic.
+
+\textbf{Example:}
+\begin{lstlisting}[language=Java]
+public class Elf extends Character {
+    private int agility;
+    
+    public Elf(String name, int age) {
+        super(name, age);
+        this.agility = 120;
+    }
+
+    @Override
+    public void communicate() {
+        System.out.println("Speaks in an elegant, mystical language");
+    }
+}
+\end{lstlisting}
+
+\subsection{Human Subclass}
+The \texttt{Human} class is well-balanced across attributes.
+
+\textbf{Example:}
+\begin{lstlisting}[language=Java]
+public class Human extends Character {
+    private int wisdom;
+
+    public Human(String name, int age) {
+        super(name, age);
+        this.wisdom = 100;
+    }
+
+    @Override
+    public void communicate() {
+        System.out.println("Speaks in a common language");
+    }
+}
+\end{lstlisting}
+
+\section{Creating Arrays of Characters}
+In Java, we can create arrays of objects to store instances of different subclasses. This allows us to perform actions on each object in a unified way.
+
+\textbf{Example:}
+\begin{lstlisting}[language=Java]
+public class Game {
+    public static void main(String[] args) {
+        Character[] characters = {
+            new Orc("Gor", 30),
+            new Elf("Aelar", 100),
+            new Human("John", 25)
+        };
+
+        for (Character character : characters) {
+            character.displayInfo();
+            character.communicate();
+        }
+    }
+}
+\end{lstlisting}
+
+This array contains different types of \texttt{Character} objects (an \texttt{Orc}, an \texttt{Elf}, and a \texttt{Human}), and each one can use the \texttt{communicate()} method, demonstrating polymorphism.
+
+\section{Abstract Classes and Methods}
+An \textbf{abstract class} cannot be instantiated and is meant to be a base class for other classes. In our game, the \texttt{Character} class is abstract to ensure no character is created without a specific race.
+
+\textbf{Abstract Method Example:}
+\begin{lstlisting}[language=Java]
+public abstract class Character {
+    public abstract void communicate();
+}
+\end{lstlisting}
+
+\textbf{Polymorphism in Action:}
+In the \texttt{Game} class example, polymorphism allows each character type to execute its specific \texttt{communicate()} method when called on the array of \texttt{Character} objects.
+
+\section{Homework and Test Preparation}
+\begin{itemize}
+    \item Review Chapter 11 of the textbook, focusing on abstract classes and polymorphism.
+    \item Be prepared to demonstrate how inheritance and method overriding work in the context of the game characters.
+    \item Experiment with adding more races, such as \texttt{Werewolf} or \texttt{Vampire}, each implementing unique \texttt{communicate()} behaviors.
+\end{itemize}
+
+\section{Next Week}
+Prepare for a test covering:
+\begin{itemize}
+    \item Creating classes, subclasses, and inheritance.
+    \item Method overriding and overloading.
+    \item Abstract classes and polymorphism.
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,174 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage{listings}
+
+% Define custom colors
+\definecolor{bg}{rgb}{0.64, 0.64, 0.82}
+\definecolor{frame}{rgb}{0.59, 0.47, 0.71}
+\definecolor{keyword}{rgb}{0.63, 0.14, 0.15}
+\definecolor{comment}{rgb}{0.44, 0.5, 0.56}
+\definecolor{string}{rgb}{0.12, 0.56, 0.18}
+
+% Set custom listings options
+\lstset{
+    backgroundcolor=\color{bg},
+    frame=single,
+    rulecolor=\color{frame},
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{keyword}\bfseries,
+    commentstyle=\color{comment},
+    stringstyle=\color{string},
+    showstringspaces=false,
+    breaklines=true,
+    xleftmargin=2mm,
+    xrightmargin=2mm
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{MAD 100 - Java Programming I - Fall 2024}
+\fancyhead[R]{Instructor: Franco Iacobacci \thepage}
+\title{Java Programming 1 - Week 10 Notes}
+\author{Hia Al Saleh}
+\date{November 7th, 2024}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage 
+
+\section{Object-Oriented Programming (OOP)}
+Object-Oriented Programming is a programming paradigm based on the concept of "objects", which can contain data in the form of fields, and code, in the form of procedures or methods. OOP focuses on using objects and classes to structure programs, enabling modular and reusable code. 
+
+\subsection{Understanding Classes and Objects}
+To truly grasp OOP, it's essential to understand two key concepts:
+\begin{itemize}
+    \item \textbf{Class:} A blueprint or template for creating objects. 
+    \item \textbf{Object:} An instance of a class, representing a specific entity with unique properties.
+\end{itemize}
+
+While classes define characteristics and behaviors, objects are the real instances of these classes. Every object generated from a class may share its structure but can possess unique values for its properties.
+
+\subsection{Example: Car as a Class}
+Consider a \texttt{Car} class:
+\begin{itemize}
+    \item Properties like \texttt{wheels}, \texttt{color}, and \texttt{engineType} define the general attributes of any car.
+    \item Methods like \texttt{accelerate()}, \texttt{brake()}, and \texttt{turn()} define actions or behaviors the car can perform.
+\end{itemize}
+When creating a \texttt{Car} object, we instantiate it with specific values, such as four wheels, red color, and an electric engine, giving the car its unique identity.
+
+\section{Components of a Class}
+A class in Java consists of various components, such as:
+\begin{itemize}
+    \item \textbf{Properties (Attributes):} Characteristics of the class.
+    \item \textbf{Methods:} Functions or behaviors associated with the class.
+    \item \textbf{Constructor:} A special method for initializing new objects.
+    \item \textbf{Access Modifiers:} Keywords that define the visibility and accessibility of classes, methods, and variables.
+\end{itemize}
+
+\subsection{Class Example: Movie Class}
+\begin{itemize}
+    \item Properties: \texttt{title}, \texttt{director}, \texttt{releaseDate}, \texttt{actors}, etc.
+    \item Methods: Actions like \texttt{play()}, \texttt{pause()}, \texttt{stop()}.
+\end{itemize}
+Using the \texttt{Movie} class template, each object (movie) will have its unique values for title, director, and so on. 
+
+\section{Constructors}
+A constructor is a unique method that is automatically called when an object is created. It typically has the same name as the class and no return type. Constructors are used to initialize objects with specific values.
+
+\subsection{Creating a Constructor}
+\begin{lstlisting}[language=Java]
+public class Movie {
+    private String title;
+    private String releaseDate;
+
+    public Movie(String title, String releaseDate) {
+        this.title = title;
+        this.releaseDate = releaseDate;
+    }
+}
+\end{lstlisting}
+In this example, \texttt{Movie} objects are initialized with a title and release date upon creation.
+
+\subsection{Default and Parameterized Constructors}
+\begin{itemize}
+    \item \textbf{Default Constructor:} A constructor with no parameters, providing default values to properties.
+    \item \textbf{Parameterized Constructor:} Accepts parameters, allowing specific initialization of properties.
+\end{itemize}
+A \texttt{Movie} class can have both types to offer flexible object creation.
+
+\section{Encapsulation and Data Hiding}
+Encapsulation is the practice of restricting access to certain details and exposing only the necessary parts of an object. This is done by setting properties to private and using public methods (getters and setters) to access or modify them.
+
+\subsection{Private, Public, and Protected Access Modifiers}
+\begin{itemize}
+    \item \textbf{Private:} Only accessible within the same class.
+    \item \textbf{Public:} Accessible from any class.
+    \item \textbf{Protected:} Accessible within the same package or subclasses.
+\end{itemize}
+Using these modifiers allows control over the accessibility of class components, enhancing data security and modularity.
+
+\subsection{Example: Getter and Setter Methods}
+Getters and setters provide controlled access to private fields.
+\begin{lstlisting}[language=Java]
+public class Movie {
+    private String title;
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+}
+\end{lstlisting}
+
+\section{Inheritance in OOP}
+Inheritance allows a class to inherit properties and methods from another class. This facilitates code reuse and establishes a relationship between classes, such as parent (superclass) and child (subclass) classes.
+
+\subsection{Creating a Subclass}
+\begin{lstlisting}[language=Java]
+public class ActionMovie extends Movie {
+    private int explosions;
+
+    public ActionMovie(String title, String releaseDate, int explosions) {
+        super(title, releaseDate);
+        this.explosions = explosions;
+    }
+}
+\end{lstlisting}
+Here, \texttt{ActionMovie} inherits from \texttt{Movie} and adds its unique property, \texttt{explosions}.
+
+\section{Polymorphism}
+Polymorphism enables objects to be treated as instances of their parent class. This allows methods to have different implementations based on the object’s actual class.
+
+\subsection{Method Overloading and Overriding}
+\begin{itemize}
+    \item \textbf{Overloading:} Defining multiple methods in the same class with the same name but different parameters.
+    \item \textbf{Overriding:} Providing a specific implementation in a subclass for a method declared in its superclass.
+\end{itemize}
+Polymorphism is essential for designing flexible and reusable code.
+
+\section{Homework}
+For further understanding of the concepts covered, read Chapter 9 of the textbook, focusing on:
+\begin{itemize}
+    \item Class creation and constructors.
+    \item Access modifiers and encapsulation.
+    \item Inheritance and polymorphism.
+\end{itemize}
+
+\section{Topics for Next Week}
+In the upcoming week, we will cover:
+\begin{itemize}
+    \item Superclasses, Subclasses, and Extending Classes.
+    \item Advanced Inheritance concepts.
+    \item Method Overloading and Overriding in more depth.
+\end{itemize}
+
+\end{document}

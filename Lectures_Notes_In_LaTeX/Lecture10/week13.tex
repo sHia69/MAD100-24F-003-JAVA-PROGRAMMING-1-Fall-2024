@@ -1,0 +1,123 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage{listings}
+
+% Define custom colors
+\definecolor{bg}{rgb}{0.64, 0.64, 0.82}
+\definecolor{frame}{rgb}{0.59, 0.47, 0.71}
+\definecolor{keyword}{rgb}{0.63, 0.14, 0.15}
+\definecolor{comment}{rgb}{0.44, 0.5, 0.56}
+\definecolor{string}{rgb}{0.12, 0.56, 0.18}
+
+% Set custom listings options
+\lstset{
+    backgroundcolor=\color{bg},
+    frame=single,
+    rulecolor=\color{frame},
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{keyword}\bfseries,
+    commentstyle=\color{comment},
+    stringstyle=\color{string},
+    showstringspaces=false,
+    breaklines=true,
+    xleftmargin=2mm,
+    xrightmargin=2mm
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{MAD 100 - Java Programming I - Fall 2024}
+\fancyhead[R]{Instructor: Franco Iacobacci \thepage}
+\title{Java Programming 1 - Week 13 Notes}
+\author{Hia Al Saleh}
+\date{November 28th, 2024}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Introduction}
+JavaFX is a powerful framework for building rich client applications. It provides developers with a set of tools to create visually appealing and interactive GUIs (Graphical User Interfaces). This week's focus was on using JavaFX to create practical applications that incorporate various components such as images, text, and user inputs.
+
+\section{Topics Covered}
+\begin{itemize}
+    \item Introduction to Objects in Java
+    \item Building GUIs using JavaFX
+    \item Understanding Images, Scenes, Stages, and Nodes
+    \item Utilizing ArrayLists in GUI applications
+    \item Incorporating Form Elements like Radio Buttons, Checkboxes, and ComboBoxes
+\end{itemize}
+
+\section{Employment Systems Project}
+\subsection{Email Overview}
+A client requested a GUI for an employee database that displays employee images, names, and descriptions. The requirements were clearly defined, emphasizing a specific layout for the interface.
+
+\subsection{Project Setup}
+\begin{enumerate}
+    \item \textbf{Creating the Project:} A new JavaFX project named \texttt{EmployeeSystem} was created using IntelliJ IDEA.
+    \item \textbf{Dependency Management:} Gradle was chosen as the build system to manage JavaFX dependencies.
+    \item \textbf{SDK Selection:} Java SDK 16 was selected to ensure compatibility with JavaFX.
+\end{enumerate}
+
+\subsection{Creating the GUI}
+\begin{itemize}
+    \item \textbf{StackPane:} Used to stack nodes on top of each other.
+    \item \textbf{GridPane:} Provides a grid-like structure for organizing elements.
+    \item \textbf{BorderPane:} Divides the layout into top, bottom, left, right, and center sections.
+\end{itemize}
+Example code for creating a simple StackPane with a Label:
+\begin{lstlisting}[language=Java]
+StackPane root = new StackPane();
+Label label = new Label("Employee Database");
+root.getChildren().add(label);
+\end{lstlisting}
+
+\section{Three Pizza Form Project}
+\subsection{Email Overview}
+The project involved creating a form for a pizza ordering system. The form required inputs for pizza size, toppings, time of order, and a free toy.
+
+\subsection{Project Setup}
+\begin{enumerate}
+    \item \textbf{Creating the Project:} A new Java project named \texttt{ThreePizzaForm} was created.
+    \item \textbf{Using GridPane:} The \texttt{GridPane} was used to layout form elements in a table-like format.
+\end{enumerate}
+
+\subsection{Form Elements Implementation}
+\begin{itemize}
+    \item \textbf{RadioButton:} Used for selecting pizza size (Small, Medium, Large) with a \texttt{ToggleGroup}.
+    \item \textbf{CheckBox:} Used for selecting multiple toppings like Pepperoni, Cheese, and Onion.
+    \item \textbf{ListView:} Displays a list of free toy options available with each order.
+    \item \textbf{ComboBox:} Provides a dropdown for selecting the time of order (Breakfast, Lunch, Dinner).
+\end{itemize}
+Example code for setting up radio buttons for pizza size:
+\begin{lstlisting}[language=Java]
+ToggleGroup pizzaSizeGroup = new ToggleGroup();
+RadioButton small = new RadioButton("Small");
+RadioButton medium = new RadioButton("Medium");
+RadioButton large = new RadioButton("Large");
+small.setToggleGroup(pizzaSizeGroup);
+medium.setToggleGroup(pizzaSizeGroup);
+large.setToggleGroup(pizzaSizeGroup);
+\end{lstlisting}
+
+\section{JavaFX Concepts Recap}
+\subsection{Stage and Scene}
+\begin{itemize}
+    \item \textbf{Stage:} The top-level container representing the window.
+    \item \textbf{Scene:} Holds the content to be displayed within the Stage.
+\end{itemize}
+
+\subsection{Pane Types}
+\begin{itemize}
+    \item \textbf{StackPane:} Stacks all child nodes on top of each other.
+    \item \textbf{GridPane:} Arranges nodes in a grid format, useful for forms.
+    \item \textbf{BorderPane:} Divides the layout into five regions (top, bottom, left, right, center).
+\end{itemize}
+
+\end{document}

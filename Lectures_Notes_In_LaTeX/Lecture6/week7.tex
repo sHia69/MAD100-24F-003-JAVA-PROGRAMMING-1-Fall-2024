@@ -1,0 +1,184 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage{listings}
+
+% Define custom colors
+\definecolor{bg}{rgb}{0.64, 0.64, 0.82}
+\definecolor{frame}{rgb}{0.59, 0.47, 0.71}
+\definecolor{keyword}{rgb}{0.63, 0.14, 0.15}
+\definecolor{comment}{rgb}{0.44, 0.5, 0.56}
+\definecolor{string}{rgb}{0.12, 0.56, 0.18}
+
+% Set custom listings options
+\lstset{
+    backgroundcolor=\color{bg},
+    frame=single,
+    rulecolor=\color{frame},
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{keyword}\bfseries,
+    commentstyle=\color{comment},
+    stringstyle=\color{string},
+    showstringspaces=false,
+    breaklines=true,
+    xleftmargin=2mm,
+    xrightmargin=2mm
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{MAD 100 - Java Programming I - Fall 2024}
+\fancyhead[R]{Instructor: Franco Iacobacci \thepage}
+\title{Java Programming 1 - Week 7 Notes}
+\author{Hia Al Saleh}
+\date{October 17th, 2024}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage 
+
+\section{Introduction to Arrays}
+This week’s lesson focused on the concept of arrays. Arrays are a type of data structure used to store large amounts of data in one convenient place. Each item in an array is identified by an index number, starting from 0, which makes accessing data straightforward.
+
+\subsection{Array Usage}
+Arrays allow us to:
+\begin{itemize}
+    \item Store multiple values of the same data type.
+    \item Access any stored value using its index.
+    \item Use them as function parameters and return types.
+\end{itemize}
+
+In Java, arrays can store various types of data, such as integers, strings, or even objects. Here are the most common ways to create arrays:
+\begin{lstlisting}
+Type[] arrayName = new Type[number of values];
+Type[] arrayName = {comma-delimited values};
+Type arrayName[] = new Type[number of values];
+\end{lstlisting}
+
+\section{Working with Arrays in Java}
+Arrays behave similarly to variables, but with the capability of storing multiple values under the same name. Here are some basic examples of arrays with strings and integers:
+
+\subsection{String Array Example}
+\begin{lstlisting}
+String[] list = new String[3];
+String[] list = {"Good", "Better", "Best"};
+String list[] = new String[3];
+\end{lstlisting}
+In this example, we define three string elements in an array called \texttt{list}. Accessing these elements is done by their index:
+\begin{itemize}
+    \item \texttt{list[0]} contains \texttt{"Good"}.
+    \item \texttt{list[1]} contains \texttt{"Better"}.
+    \item \texttt{list[2]} contains \texttt{"Best"}.
+\end{itemize}
+
+\subsection{Integer Array Example}
+Similarly, we can define an array that stores integers:
+\begin{lstlisting}
+int[] grades = new int[6];
+int[] grades = {89, 10, 99, 100, 78, 55};
+int grades[] = new int[6];
+\end{lstlisting}
+This allows us to store six integer values, such as student grades, and access them using their index.
+
+\section{Class List Generator Project}
+One of the week’s exercises involved building a class list generator. The goal was to allow a teacher to input the names of students in a class, and then sort and display the list in alphabetical or reverse alphabetical order.
+
+\subsection{Plan of Action}
+The plan involves the following steps:
+\begin{enumerate}
+    \item Create an array to store the student names.
+    \item Use a loop to gather student names from the teacher.
+    \item Ask the user if they want to display the names in alphabetical or reverse alphabetical order.
+    \item Sort the array and display the result.
+\end{enumerate}
+
+\subsection{Code Implementation}
+
+Below is the full implementation of the Class List Generator:
+
+\begin{lstlisting}[language=Java]
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class ClassListGenerator {
+
+    public static void main(String[] args) {
+        // Initialize Scanner for user input
+        Scanner input = new Scanner(System.in);
+        
+        // Ask the teacher for the number of students
+        System.out.print("Enter the number of students: ");
+        int numberOfStudents = input.nextInt();
+        input.nextLine();  // Consume the newline character
+        
+        // Create an array to store the students' names
+        String[] studentNames = new String[numberOfStudents];
+        
+        // Populate the array with student names
+        for (int i = 0; i < numberOfStudents; i++) {
+            System.out.print("Enter the name of student " + (i + 1) + ": ");
+            studentNames[i] = input.nextLine();
+        }
+        
+        // Ask the user whether to sort the list in ascending or descending order
+        System.out.print("Enter 1 for alphabetical order or 0 for reverse alphabetical order: ");
+        int order = input.nextInt();
+        
+        // Sort the array alphabetically
+        Arrays.sort(studentNames);
+        
+        // Display the sorted array in the chosen order
+        if (order == 1) {
+            System.out.println("Class List in Alphabetical Order:");
+            for (String name : studentNames) {
+                System.out.println(name);
+            }
+        } else {
+            System.out.println("Class List in Reverse Alphabetical Order:");
+            for (int i = studentNames.length - 1; i >= 0; i--) {
+                System.out.println(studentNames[i]);
+            }
+        }
+    }
+}
+\end{lstlisting}
+
+\subsection{Explanation of the Code}
+\begin{itemize}
+    \item \texttt{Scanner input = new Scanner(System.in);} initializes the scanner for taking input from the user.
+    \item \texttt{String[] studentNames = new String[numberOfStudents];} creates an array of strings to store the student names.
+    \item The \texttt{for} loop collects the names of the students one by one.
+    \item \texttt{Arrays.sort(studentNames);} sorts the array in alphabetical order.
+    \item Depending on the user’s choice, the program either displays the names in alphabetical order or in reverse alphabetical order by looping through the array backwards.
+\end{itemize}
+
+\subsection{Challenges and Solutions}
+One challenge in the implementation is ensuring that the correct number of students is processed. The code uses \texttt{input.nextLine()} to handle potential issues with the input buffer, especially when dealing with the newline character after \texttt{nextInt()}.
+
+Another challenge is handling the sorting order, which is solved by using an \texttt{if-else} statement to determine how the array should be printed.
+
+\section{Testing and Improving the Program}
+It is essential to test the program with various inputs to ensure it functions correctly. For example, you can test it with:
+\begin{itemize}
+    \item A small class size (e.g., 3 students).
+    \item A large class size (e.g., 20 students).
+    \item Edge cases such as no students or identical student names.
+\end{itemize}
+
+During testing, common errors like \texttt{ArrayIndexOutOfBoundsException} may occur if the user tries to access an index that does not exist. It’s crucial to handle such exceptions by using proper checks before accessing array elements.
+
+\section{Homework}
+As a follow-up to this exercise, read Chapter 7 of the textbook. This chapter dives deeper into topics such as:
+\begin{itemize}
+    \item Logical operators (\texttt{\&\&}, \texttt{||}).
+    \item Typecasting and how it applies to arrays and other data structures.
+\end{itemize}
+
+Next week, we will cover these topics in detail and explore their use in Java programming.
+
+\end{document}

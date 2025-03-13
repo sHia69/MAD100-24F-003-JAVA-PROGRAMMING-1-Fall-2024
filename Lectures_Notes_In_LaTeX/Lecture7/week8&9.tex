@@ -1,0 +1,217 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage{listings}
+
+% Define custom colors
+\definecolor{bg}{rgb}{0.64, 0.64, 0.82}
+\definecolor{frame}{rgb}{0.59, 0.47, 0.71}
+\definecolor{keyword}{rgb}{0.63, 0.14, 0.15}
+\definecolor{comment}{rgb}{0.44, 0.5, 0.56}
+\definecolor{string}{rgb}{0.12, 0.56, 0.18}
+
+% Set custom listings options
+\lstset{
+    backgroundcolor=\color{bg},
+    frame=single,
+    rulecolor=\color{frame},
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{keyword}\bfseries,
+    commentstyle=\color{comment},
+    stringstyle=\color{string},
+    showstringspaces=false,
+    breaklines=true,
+    xleftmargin=2mm,
+    xrightmargin=2mm
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{MAD 100 - Java Programming I - Fall 2024}
+\fancyhead[R]{Instructor: Franco Iacobacci \thepage}
+\title{Java Programming 1 - Week 8 Notes}
+\author{Hia Al Saleh}
+\date{October 24th, 2024}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage 
+
+\section{SpyTek Caesar Cipher}
+In this week's lesson, we covered topics related to encryption and decryption using the Caesar Cipher. We focused on the following core concepts:
+\begin{itemize}
+    \item String manipulation
+    \item Typecasting
+    \item The \texttt{\&\&} and \texttt{||} operators
+    \item Introduction to Object-Oriented Programming (OOP)
+\end{itemize}
+
+\subsection{Project Request}
+We were introduced to a client project called \textbf{SpyTek}, where the task was to build a program capable of encrypting and decrypting email messages using the Caesar Cipher.
+
+The client provided the following requirements:
+\begin{itemize}
+    \item The program should ask the user if they wish to encrypt or decrypt a message.
+    \item It should then prompt the user to input the message and the key.
+    \item The program will output the encrypted or decrypted message to the user.
+\end{itemize}
+
+\subsection{Plan of Action}
+To solve this problem, we created a function that handles both encryption and decryption. The function takes the following parameters:
+\begin{itemize}
+    \item \texttt{text} - the message to be processed.
+    \item \texttt{key} - the number of positions to shift in the alphabet.
+    \item \texttt{mode} - whether to encrypt or decrypt.
+\end{itemize}
+
+\section{Caesar Cipher}
+The Caesar Cipher is a substitution cipher that shifts each letter in the alphabet by a certain number of positions based on the key. Here's how it works:
+\begin{itemize}
+    \item Encryption shifts each letter forward by the key value.
+    \item Decryption shifts each letter backward by the key value.
+\end{itemize}
+
+For example:
+\begin{itemize}
+    \item Shifting the letter 'a' by 5 results in 'f'.
+    \item The reverse operation decrypts the message back to 'a'.
+\end{itemize}
+\begin{lstlisting}[language=java]
+    import java.util.Scanner;
+import java.util.StringTokenizer;
+
+public class CaesarCypher1 {
+    public static void main(String[] args) {
+        final boolean DEBUG = false;
+        Scanner input = new Scanner(System.in);
+        //encryption or decryption
+        System.out.println("What would you like to do?\n" +
+                "1) encrypt\n" +
+                "2) decrypt");
+        int mode = input.nextInt();
+        //key
+        System.out.println("Enter the key size");
+        int key = input.nextInt();
+        //message
+        input.nextLine();
+        System.out.println("Enter the message");
+        String msg = input.nextLine();
+        //output result
+        if (mode == 1){
+            System.out.println(encrypt(msg, key));
+        }
+        else if(mode ==2) {
+            System.out.println(decrypt(msg, key));
+        }
+        else {
+            System.out.println("Choose 1 or 2");
+        }
+        if (DEBUG) System.out.println(mode+ " "+ key +" \n"+msg);
+        
+        input.close();
+    }
+
+    public static String encrypt(String msg, int key){
+        StringTokenizer tokenizer = new StringTokenizer(msg.toLowerCase(), " ");
+        String cypher = "";
+        while (tokenizer.hasMoreTokens()){
+            String value = tokenizer.nextToken();
+            for (int i = 0; i< value.length(); i++){
+                char character = value.charAt(i);
+                int asciiValue = (int)value.charAt(i)+key;
+                if(asciiValue > 122){
+                    asciiValue-=26;
+                }
+                character = (char)asciiValue;
+                cypher+=character;
+            }
+            cypher+=" ";
+        }
+        return cypher; // Change to message
+    }
+    public static String decrypt(String cypher, int key){
+        StringTokenizer tokenizer = new StringTokenizer(cypher.toLowerCase(), " ");
+        String text = "";
+        while (tokenizer.hasMoreTokens()){
+            String value = tokenizer.nextToken();
+            for (int i = 0; i< value.length(); i++){
+                char character = value.charAt(i);
+                int asciiValue = (int)value.charAt(i)-key;
+                if(asciiValue < 97){
+                    asciiValue+=26;
+                }
+                character = (char)asciiValue;
+                text+=character;
+            }
+            text+=" ";
+        }
+        return text; // Change to message
+    }
+}
+\end{lstlisting}
+
+\subsection{Key Information}
+Before diving deeper into the implementation, we reviewed the following key topics:
+\begin{itemize}
+    \item \textbf{Encryption}: The process of encoding a message so that only the intended recipient can read it.
+    \item \textbf{Decryption}: The process of converting the ciphertext back into readable text.
+\end{itemize}
+
+\section{String Manipulation}
+String manipulation is key to the Caesar Cipher, and Java provides several tools to handle strings:
+\begin{itemize}
+    \item \texttt{substring(begin, end)} - Extracts part of a string.
+    \item \texttt{toUpperCase()} - Converts a string to uppercase.
+    \item \texttt{toLowerCase()} - Converts a string to lowercase.
+    \item \texttt{replace(old, new)} - Replaces characters in a string.
+    \item \texttt{charAt(index)} - Returns the character at the specified index.
+    \item \texttt{length()} - Returns the length of the string.
+\end{itemize}
+
+\section{Typecasting}
+In Java, typecasting allows you to convert between data types. There are two types of casting:
+\begin{itemize}
+    \item \textbf{Implicit casting}: Java automatically converts smaller data types to larger ones (e.g., from int to double).
+    \item \textbf{Explicit casting}: Requires manual conversion using the target type in parentheses (e.g., \texttt{(int) value}).
+\end{itemize}
+\begin{lstlisting}
+// Example of typecasting
+public class TypeCastingExample {
+    public static void main(String[] args) {
+        // Implicit casting (int to double)
+        int intValue = 10;
+        double doubleValue = intValue;
+        System.out.println("Implicit cast: " + doubleValue);
+
+        // Explicit casting (double to int)
+        double anotherDouble = 9.78;
+        int anotherInt = (int) anotherDouble;
+        System.out.println("Explicit cast: " + anotherInt);
+    }
+}
+\end{lstlisting}
+\newpage 
+\section{ASCII Table}
+We also used the ASCII table, which represents characters as numeric values. This allowed us to shift characters in the cipher by manipulating their ASCII values directly.
+\begin{lstlisting}
+// Example of using ASCII values in Caesar Cipher
+public class ASCIICipher {
+    public static void main(String[] args) {
+        char c = 'a';
+        int asciiValue = (int) c;
+        System.out.println("ASCII value of 'a': " + asciiValue);
+        
+        // Shift character by 3 using ASCII
+        char shiftedChar = (char) (c + 3);
+        System.out.println("Shifted character: " + shiftedChar);
+    }
+}
+\end{lstlisting}
+
+
+\end{document}

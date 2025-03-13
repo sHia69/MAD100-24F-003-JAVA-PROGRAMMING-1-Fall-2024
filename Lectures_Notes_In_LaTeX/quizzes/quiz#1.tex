@@ -1,0 +1,256 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage{listings}
+
+% Define custom colors
+\definecolor{bg}{rgb}{0.64, 0.64, 0.82}
+\definecolor{frame}{rgb}{0.59, 0.47, 0.71}
+\definecolor{keyword}{rgb}{0.63, 0.14, 0.15}
+\definecolor{comment}{rgb}{0.44, 0.5, 0.56}
+\definecolor{string}{rgb}{0.12, 0.56, 0.18}
+
+% Set custom listings options
+\lstset{
+    backgroundcolor=\color{bg},
+    frame=single,
+    rulecolor=\color{frame},
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{keyword}\bfseries,
+    commentstyle=\color{comment},
+    stringstyle=\color{string},
+    showstringspaces=false,
+    breaklines=true,
+    xleftmargin=2mm,
+    xrightmargin=2mm
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{MAD 100 - Java Programming I - Fall 2024}
+\fancyhead[R]{Instructor: Franco Iacobacci \thepage}
+\title{Java Programming 1 - Quiz Notes}
+\author{Kensukeken}
+\date{October 9th, 2024}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+
+\section{Calculating Powers in Java}
+In Java, you can calculate $2^8$ using the \texttt{Math.pow} method:
+\begin{lstlisting}[language=Java]
+double result = Math.pow(2, 8);
+System.out.println(result);  // Outputs 256.0
+\end{lstlisting}
+Alternatively, using bitwise shift operators:
+\begin{lstlisting}[language=Java]
+int result = 1 << 8;
+System.out.println(result);  // Outputs 256
+\end{lstlisting}
+
+\section{Math.abs Function}
+The result of \texttt{Math.abs(7 - 9)} is:
+\[
+7 - 9 = -2
+\]
+Applying \texttt{Math.abs} gives $2$.
+
+\section{Reading an Integer from User Input}
+To read an integer from user input in Java, the following steps are required:
+\begin{itemize}
+    \item Import the \texttt{Scanner} class:
+    \begin{lstlisting}[language=Java]
+    import java.util.Scanner;
+    \end{lstlisting}
+    \item Create a \texttt{Scanner} object:
+    \begin{lstlisting}[language=Java]
+    Scanner input = new Scanner(System.in);
+    \end{lstlisting}
+    \item Use the \texttt{nextInt} method to read an integer:
+    \begin{lstlisting}[language=Java]
+    int value = input.nextInt();
+    \end{lstlisting}
+\end{itemize}
+
+\section{Declaring Constants}
+To declare a constant \texttt{HST} in Java, use the \texttt{final} keyword:
+\begin{lstlisting}[language=Java]
+final double HST = 13.0;
+\end{lstlisting}
+
+\section{Output of Floating Point Division}
+The result of \texttt{System.out.println(4.0 / 2)} is:
+\[
+4.0 / 2 = 2.0
+\]
+
+\section{Modulo Operation}
+The result of \texttt{System.out.println(7 \% 2)} is:
+\[
+7 \div 2 = 3 \quad \text{(quotient)}, \quad 1 \quad \text{(remainder)} 
+\]
+Thus, $7 \% 2 = 1$.
+
+\section{Output Example}
+To output the following:
+\begin{quote}
+Your numbers: 1 2 3 4 5 \\
+Total 15
+\end{quote}
+The correct Java code is:
+\begin{lstlisting}[language=Java]
+System.out.println("Your numbers:");
+System.out.print(1 + " ");
+System.out.print(2 + " ");
+System.out.print(3 + " ");
+System.out.print(4 + " ");
+System.out.print(5 + "\n");
+System.out.print("Total ");
+System.out.println(15);
+\end{lstlisting}
+
+\section{Math.floor Function}
+The result of \texttt{Math.floor(3.9)} is $3.0$.
+
+\section{Integer Division}
+The result of \texttt{System.out.println(7 / 2)} is $3$ because Java performs integer division, truncating the decimal.
+
+\section{Storing Decimal Numbers}
+To store a decimal number like $7.5$ in Java, use the \texttt{double} type:
+\begin{lstlisting}[language=Java]
+double value = 7.5;
+\end{lstlisting}
+
+\section{Comparing Numbers}
+The following comparisons are evaluated as:
+\begin{itemize}
+    \item $-2 < 1$: True
+    \item $7 < -8$: False
+    \item $-4 < -5$: False
+    \item $3 < 3$: False
+\end{itemize}
+
+\section{For Loop Output}
+For the following code:
+\begin{lstlisting}[language=Java]
+for (int i = 0; i <= 10; i++) {
+    System.out.println(i);
+}
+\end{lstlisting}
+The output is:
+\[
+0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+\]
+
+\section{Do-While Loop Output}
+For the following code:
+\begin{lstlisting}[language=Java]
+int x = 10;
+do {
+    System.out.println(--x);
+} while (x < 0);
+\end{lstlisting}
+The output is $9$ because the condition is checked after the first iteration.
+
+\section{If-Else Statement}
+Given the code:
+\begin{lstlisting}[language=Java]
+if (x >= 2) {
+    System.out.println(">=2");
+} else if (x >= 4) {
+    System.out.println(">=4");
+} else {
+    System.out.println("<2");
+}
+\end{lstlisting}
+If $x = 4$, the output will be \texttt{>=2}.
+
+\section{Nested Loops Output}
+For the following code:
+\begin{lstlisting}[language=Java]
+for (int i = 0; i < 3; i++) {
+    for (int j = 0; j < 3; j++) {
+        System.out.println(j + " - " + i);
+    }
+}
+\end{lstlisting}
+The output will be:
+\[
+0 - 0, 1 - 0, 2 - 0, 0 - 1, 1 - 1, 2 - 1, 0 - 2, 1 - 2, 2 - 2
+\]
+
+\section{Output of the while loop}
+\begin{lstlisting}[language=Java]
+int x = 0;
+while (x < 10) {
+    System.out.println(++x);
+}
+// Output:
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+\end{lstlisting}
+
+\section{Switch Case Example}
+For the following code:
+\begin{lstlisting}[language=Java]
+int x = 3;
+switch(x) {
+    case 1: System.out.println("one");
+    case 2: System.out.println("two");
+    case 3: System.out.println("three");
+    case 4: System.out.println("four");
+    default: System.out.println("other");
+}
+// Output:
+three
+four
+other
+\end{lstlisting}
+
+\section{Generating a random integer between 1 and 10:}
+\begin{lstlisting}[language=Java]
+import java.util.Random;
+Random random = new Random();
+int randomValue = random.nextInt(10) + 1;
+\end{lstlisting}
+
+\section*{Break and Continue Statements}
+The following code demonstrates the use of \texttt{break} and \texttt{continue}:
+\begin{lstlisting}[language=Java]
+for (int i = 0; i < 5; i++) {
+    if (i == 2) {
+        continue;
+    }
+    if (i == 4) {
+        break;
+    }
+    System.out.println(i);
+}
+\end{lstlisting}
+The output is:
+\[
+0, 1, 3
+\]
+
+\section*{Ternary Operator}
+In Java, the ternary operator is used for conditional expressions:
+\begin{lstlisting}[language=Java]
+int result = (x > 0) ? x : -x;
+\end{lstlisting}
+If \texttt{x} is greater than 0, \texttt{result} is \texttt{x}; otherwise, \texttt{result} is \texttt{-x}.
+
+\end{document}
